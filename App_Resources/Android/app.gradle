@@ -1,0 +1,25 @@
+android {
+  defaultConfig {
+    minSdkVersion 21
+    targetSdkVersion 33
+    generatedDensities = []
+  }
+  aaptOptions {
+    additionalParameters "--no-version-vectors"
+  }
+  signingConfigs {
+    release {
+      storeFile file("keystore/loan-lead-app.keystore")
+      storePassword System.getenv("KEYSTORE_PASSWORD")
+      keyAlias "loan_lead_app"
+      keyPassword System.getenv("ALIAS_PASSWORD")
+    }
+  }
+  buildTypes {
+    release {
+      signingConfig signingConfigs.release
+      minifyEnabled true
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    }
+  }
+}
